@@ -15,15 +15,16 @@ func _enter_tree() -> void:
 func current_script_changed(scriptObj: Script) -> void:
 	if EditorInterface.get_script_editor().get_current_editor():
 		current_code_edit  = EditorInterface.get_script_editor().get_current_editor().get_base_editor()
-		typing_particles_inst = current_code_edit.get_node("TypingParticles")
-	
-		if current_code_edit and !typing_particles_inst:
+		if current_code_edit.has_node("TypingParticles"):
+			typing_particles_inst = current_code_edit.get_node("TypingParticles")
+		else:
+			typing_particles_inst = typing_particles_scene.instantiate()
+			current_code_edit.add_child(typing_particles_inst)
+		if current_code_edit:
 			if !current_code_edit.gui_input.is_connected(handle_code_edit_input):
-				typing_particles_inst = typing_particles_scene.instantiate()
-				current_code_edit.add_child(typing_particles_inst)
 				current_code_edit.gui_input.connect(handle_code_edit_input)
-		else: 
-			printerr("was not able to get the code editor :c")
+		#else: 
+			#printerr("was not able to get the code editor :c")
 
 
 func handle_code_edit_input(event: InputEvent) -> void:
