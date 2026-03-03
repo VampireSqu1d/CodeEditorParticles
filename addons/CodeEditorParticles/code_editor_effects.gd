@@ -80,11 +80,7 @@ func handle_code_edit_input(event: InputEvent) -> void:
 					typing_particles_inst.position = caret_pos
 					typing_particles_inst.emitting = true
 			else:
-				print("caret_pos not valid, !is_finite(caret_pos) == true")
-
-
-func material_color_change(new_color: Color, particle_type: EffectsOptionsDock.type_code) -> void:
-	typing_particles_inst.process_material.color = new_color
+				printerr("caret_pos not valid, !is_finite(caret_pos) == true")
 
 
 func _exit_tree() -> void:
