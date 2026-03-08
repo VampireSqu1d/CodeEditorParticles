@@ -1,2 +1,8 @@
 # Normalize EOL for all files that Git considers text files.
 * text=auto eol=lf
+
+# Exclude from Asset Library zip so users download only the addon (+ license/readme).
+.gitignore export-ignore
+.editorconfig export-ignore
+project.godot export-ignore
+.github export-ignore
